@@ -15,24 +15,19 @@ class UTTTGame():
         pass
 
     def getInitBoard(self):
-        list = [[0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0]]
-        wb = [0,0,0,0,0,0,0,0,0]
-        board = Board(list,wb,True,9)
+        board = []
+        for i in range(90):
+            board.append(0)
+        for i in range(9):
+            board.append(1)
+        board.append(1)
         return board
 
     def getBoardSize(self):
-        return (9,9)
+        return (self.n,self.n)
 
     def getActionSize(self):
-        return 81
+        return self.n*self.n
 
     def getNextState(self, board:Board, player, action):
         """
@@ -45,9 +40,10 @@ class UTTTGame():
             nextBoard: board after applying action
             nextPlayer: player who plays in the next turn (should be -player)
         """
-        return (Board.MakeMove(board,player,action[0],action[1]),-player)
+        board[action[0],action[1]] = player
+        return board
 
-    def getValidMoves(self, board:Board, player):
+    def getValidMoves(self, board, player):
         """
         Input:
             board: current board
@@ -60,9 +56,10 @@ class UTTTGame():
         """
         player
         movelist = []
-        if board.sb != 9:
+        board[81] = 
+        if board[81] != 9:
             for i in range(0,9):
-                if board.bs[board.sb][i] == 0:
+                if board[] == 0:
                     movelist.append([board.sb,i])
         else:
             for i in range(0,9):
